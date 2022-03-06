@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+
+    <title>Hotel Reservation</title>
+
+
+</head>
+
+<body onload="initClock()">
+    <div class="datetime">
+        <div class="date">
+            <span id="dayname">Day</span>,
+            <span id="month">Month</span>
+            <span id="daynum">00</span>,
+            <span id="year">Year</span>
+        </div>
+        <div class="time">
+            <span id="hour">00</span>:
+            <span id="minutes">00</span>:
+            <span id="seconds">00</span>
+            <span id="period">AM</span>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        function updateClock() {
+            var now = new Date();
+            var dname = now.getDay(),
+                mo = now.getMonth(),
+                dnum = now.getDate(),
+                yr = now.getFullYear(),
+                hr = now.getHours(),
+                min = now.getMinutes(),
+                sec = now.getSeconds(),
+                pe = "AM";
+
+            if (hr >= 12) {
+                pe = "PM";
+            }
+            if (hr == 0) {
+                hr = 12;
+            }
+            if (hr > 12) {
+                hr = hr - 12;
+            }
+
+            Number.prototype.pad = function (digits) {
+                for (var n = this.toString(); n.length < digits; n = 0 + n);
+                return n;
+            }
+
+            var months = ["January", "February", "March", "April", "May", "June", "July", "Augest", "September", "October", "November", "December"];
+            var week = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            var ids = ["dayname", "month", "daynum", "year", "hour", "minutes", "seconds", "period"];
+            var values = [week[dname], months[mo], dnum.pad(2), yr, hr.pad(2), min.pad(2), sec.pad(2), pe];
+            for (var i = 0; i < ids.length; i++)
+                document.getElementById(ids[i]).firstChild.nodeValue = values[i];
+            var timenow = hour.textContent + ":" + minutes.textContent + " " + period.textContent
+
+            $("#timenow").html(timenow);
+        }
+
+        function initClock() {
+            updateClock();
+            window.setInterval("updateClock()", 1);
+        }
+    </script>
+    <div class="container">
+        <div id="alert"></div>
+        <div id="alertsuccess"></div>
+
+        <div class="navbar">
+            <a href="#home" id="a1">Reserve</a>
+            <a href="#result" id="a2">Result</a>
+            <span id="timenow" style="margin-left: 2rem; font-size: 24px;"></span>
+            <h3>Hotel de Luna</h3>
+        </div>
+
+
+        <section class="section-1" id="home">
+
+            <div class="block">
+                <h4>Sweet Classic</h4>
+                <button id="btn1">
+                    <img src="image/image1.jpg">
+                    <div>
+                        Reserve for: 0.001 Ether
+                    </div>
+                </button>
+            </div>
+
+            <div class="block">
+                <h4>Little Contrast</h4>
+                <button id="btn2">
+                    <img src="image/image2.jpg">
+                    <div>
+                        Reserve for: 0.0015 Ether
+                    </div>
+                </button>
+            </div>
+
+            <div class="block">
+                <h4>Innocent White</h4>
+                <button id="btn3">
+                    <img src="image/image3.jpeg">
+                    <div>
+                        Reserve for: 0.002 Ether
+                    </div>
+                </button>
+            </div>
+
+            <div class="block">
+                <h4>Luxury Gold</h4>
+                <button id="btn4">
+                    <img src="image/image4.jpg">
+                    <div>
+                        Reserve for: 0.0025 Ether
+                    </div>
+                </button>
+            </div>
+
+            <div class="block">
+                <h4>Minimalist's Dream</h4>
+                <button id="btn5">
+                    <img src="image/image5.jpg">
+                    <div>
+                        Reserve for: 0.003 Ether
+                    </div>
+
+                </button>
+            </div>
+
+            <div class="block">
+                <h4>Single Perfect</h4>
+                <button id="btn6">
+                    <img src="image/image6.png">
+                    <div>
+                        Reserve for: 0.0035 Ether
+                    </div>
+                </button>
+            </div>
+
+        </section>
+
+        <section class="section-2" id="result">
+            <table>
+                <tr>
+                    <th id="Time">Time</th>
+                    <th id="Room">Room</th>
+                    <th id="Onwer">Owner</th>
+                </tr>
+                <tr id="re1">
+                    <th id="time1"></th>
+                    <th id="hotel1"></th>
+                    <th id="owner1"></th>
+                </tr>
+                <tr id="re2">
+                    <th id="time2"></th>
+                    <th id="hotel2"></th>
+                    <th id="owner2"></th>
+                </tr>
+                <tr id="re3">
+                    <th id="time3"></th>
+                    <th id="hotel3"></th>
+                    <th id="owner3"></th>
+                </tr>
+                <tr id="re4">
+                    <th id="time4"></th>
+                    <th id="hotel4"></th>
+                    <th id="owner4"></th>
+                </tr>
+                <tr id="re5">
+                    <th id="time5"></th>
+                    <th id="hotel5"></th>
+                    <th id="owner5"></th>
+                </tr>
+                <tr id="re6">
+                    <th id="time6"></th>
+                    <th id="hotel6"></th>
+                    <th id="owner6"></th>
+                </tr>
+            </table>
+
+        </section>
+
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+    <script>
+
+
+        // document.querySelector('#btn1').addEventListener('click', () => {
+        // console.log('test');
+        // })
+
+
+        async function loadWeb3() {
+            if (window.ethereum) {
+                window.web3 = new Web3(window.ethereum);
+                window.ethereum.enable();
+            }
+        }
+        
+        async function loadContract() {
+            return await new window.web3.eth.Contract(abi, "0xA289f2101D4990B21Df751cdF10bF32f39F96dF0"); //contract
+        }
+
+
+        let currentAccount = null;
+        window.ethereum
+            .request({ method: 'eth_accounts' })
+            .then(handleAccountsChanged)
+            .catch((err) => {
+                // Some unexpected error.
+                // For backwards compatibility reasons, if no accounts are available,
+                // eth_accounts will return an empty array.
+                console.error(err);
+            });
+
+        // Note that this event is emitted on page load.
+        // If the array of accounts is non-empty, you're already
+        // connected.
+        window.ethereum.on('accountsChanged', handleAccountsChanged);
+
+        // For now, 'eth_accounts' will continue to always return an array
+        function handleAccountsChanged(accounts) {
+            if (accounts.length === 0) {
+                // MetaMask is locked or the user has not connected any accounts
+                console.log('Please connect to MetaMask.');
+            } else if (accounts[0] !== currentAccount) {
+                currentAccount = accounts[0];
+                // Do any other work!
+            }
+        }
+
+        let abi = [
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "timestamp",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "hotelname",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "bytes32",
+                        "name": "hash",
+                        "type": "bytes32"
+                    }
+                ],
+                "name": "reservationAdded",
+                "type": "event"
+            },
+            {
+                "anonymous": false,
+                "inputs": [
+                    {
+                        "indexed": false,
+                        "internalType": "address",
+                        "name": "from",
+                        "type": "address"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "text",
+                        "type": "string"
+                    },
+                    {
+                        "indexed": false,
+                        "internalType": "string",
+                        "name": "reason",
+                        "type": "string"
+                    }
+                ],
+                "name": "reserveError",
+                "type": "event"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "name",
+                        "type": "string"
+                    }
+                ],
+                "name": "checkReserve",
+                "outputs": [
+                    {
+                        "internalType": "bool",
+                        "name": "",
+                        "type": "bool"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "t",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "h",
+                        "type": "string"
+                    }
+                ],
+                "name": "reserve",
+                "outputs": [],
+                "stateMutability": "payable",
+                "type": "function"
+            }
+        ];
+
+
+        async function load() {
+            await loadWeb3();
+            window.contract = await loadContract();
+            // updateStatus('Ready!');
+        }
+
+        function updateStatus(status) {
+            // const statusEl = document.getElementById('status');
+            // statusEl.innerHTML = status;
+            // console.log(status);
+        }
+
+        $("#btn1").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+
+            window.contract.methods.reserve(timeToString, "Sweet Classic")
+                .send({ from: currentAccount, value: 100000000000000000 }, function (error, result) {
+
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time1").html(event.returnValues.timestamp);
+                    $("#hotel1").html(event.returnValues.hotelname);
+                    $("#owner1").html(event.returnValues.from);
+                }
+            })
+        });
+
+        $("#btn2").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+            window.contract.methods.reserve(timeToString, "Little Contrast")
+                .send({ from: currentAccount, value: 150000000000000000 }, function (error, result) {
+                    $("#result").html(result);
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time2").html(event.returnValues.timestamp);
+                    $("#hotel2").html(event.returnValues.hotelname);
+                    $("#owner2").html(event.returnValues.from);
+                }
+            })
+        });
+
+        $("#btn3").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+            window.contract.methods.reserve(timeToString, "Innocent White")
+                .send({ from: currentAccount, value: 200000000000000000 }, function (error, result) {
+                    $("#result").html(result);
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time3").html(event.returnValues.timestamp);
+                    $("#hotel3").html(event.returnValues.hotelname);
+                    $("#owner3").html(event.returnValues.from);
+                }
+            })
+        });
+
+        $("#btn4").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+            window.contract.methods.reserve(timeToString, "Luxury Gold")
+                .send({ from: currentAccount, value: 250000000000000000 }, function (error, result) {
+                    $("#result").html(result);
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time4").html(event.returnValues.timestamp);
+                    $("#hotel4").html(event.returnValues.hotelname);
+                    $("#owner4").html(event.returnValues.from);
+                }
+            })
+        });
+
+        $("#btn5").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+            window.contract.methods.reserve(timeToString, "Minimalist's Dream")
+                .send({ from: currentAccount, value: 300000000000000000 }, function (error, result) {
+                    $("#result").html(result);
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time5").html(event.returnValues.timestamp);
+                    $("#hotel5").html(event.returnValues.hotelname);
+                    $("#owner5").html(event.returnValues.from);
+                }
+            })
+        });
+
+        $("#btn6").click(function () {
+            console.log(currentAccount);
+            var times = document.getElementById('timenow');
+            times.style.display = 'block';
+            var timeToString;
+            if (times.outerHTML)
+                timeToString = times.outerHTML;
+            else if (XMLSerializer)
+                timeToString = new XMLSerializer().timeToString(times);
+            window.contract.methods.reserve(timeToString, "Single Perfect")
+                .send({ from: currentAccount, value: 350000000000000000 }, function (error, result) {
+                    $("#result").html(result);
+                });
+            window.contract.once('reservationAdded', {}, function (error, event) {
+                if (!error) {
+                    console.log(event);
+                    $("#time6").html(event.returnValues.timestamp);
+                    $("#hotel6").html(event.returnValues.hotelname);
+                    $("#owner6").html(event.returnValues.from);
+                }
+            })
+        });
+
+
+
+        load();
+
+    </script>
+
+</body>
+
+
+</html>
